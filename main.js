@@ -1,4 +1,4 @@
-// import 'style.css'
+import {encrypt, decrypt} from "./src/cesar.js";
 
 
 
@@ -99,3 +99,8 @@ const ViteDocumentation = () => {
 document.querySelector('#app').innerHTML = SignInForm()
 
 handleSignInForm()
+
+const word = encrypt('Hello, world!', 100)
+console.log(decrypt(word, 100))
+
+console.log(word)
