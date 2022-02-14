@@ -1,4 +1,4 @@
-// import {encrypt, decrypt} from "./src/cesar.js";
+import {encrypt, decrypt} from "./src/cesar.js";
 
 
 
@@ -41,7 +41,7 @@ const MainPage = () => {
                   <h3 class="uk-card-title">Jotaro kujo</h3>
               </div>
               <div class="uk-card-body text-center">
-                <img src="jotaro1.png" alt="No picture" class="img-fluid img-thumbnail">
+                <img src="./jotaro1.png" alt="No picture" class="img-fluid img-thumbnail">
 
               </div>
             </div>
