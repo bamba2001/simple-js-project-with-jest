@@ -19,7 +19,7 @@ const EncryptForm = () => {
                         </div>
                         <div class="form-group">
                             <label for="message-key">Clé</label>
-                            <input id="message-key" type="number" class="form-control uk-input" name="message-key">
+                            <input id="crypted-key" type="number" class="form-control uk-input" name="message-key">
                         </div>
                     </div>
 
@@ -31,61 +31,55 @@ const EncryptForm = () => {
                       
                     </div>
                     <p id="crypted-label" class="hidden"></p>
-                    <p id="crypted-content" class="text-success text-center hidden" id="crypted-message"></p>
+                    <p id="crypted-content" class="text-success text-center hidden"></p>
 
                 </div>
           
           </div>`
 }
 
-// const DecryptForm = () => {
-//   return `<div class="container mb-5 mt-5">
-//             <form id="sign-in-form">
-//                 <div class="uk-card uk-card-default uk-width-*">
 
-//                     <div class="uk-card-header text-center">
-//                         <h3 class="uk-card-title">Déchiffrement César</h3>
-//                     </div>
+const DecryptForm = () => {
+  return `<div class="container mb-5 mt-5">
+           
+                <div class="uk-card uk-card-default uk-width-*">
 
-//                     <div class="uk-card-body">
-//                         <p class="text-danger text-center hidden" id="error-msg"></p>
-//                         <div class="form-group">
-//                             <label for="username">Message à déchiffrer</label>
-//                             <input type="text" id="username" class="form-control uk-input" name="login">
-//                         </div>
-//                         <div class="form-group">
-//                             <label for="password">Clé</label>
-//                             <input id="password" type="number" class="form-control uk-input" name="password">
-//                         </div>
-//                     </div>
+                    <div class="uk-card-header text-center">
+                        <h3 id="formTitle" class="uk-card-title">Déchiffrement César</h3>
+                    </div>
 
-//                     <div class="uk-card-footer">
-//                         <div class="row">
-//                             <button type="submit" class="btn uk-button-primary btn-block" >Déchiffrer</button>
-//                         </div>
-//                     </div>
-//                 </div>
-//             </form>
-//           </div>`
-// }
+                    <div class="uk-card-body">
+                       
+                        <div class="form-group">
+                            <label for="message">Message à déchiffrer</label>
+                            <input type="text" id="to-decrypt" class="form-control uk-input" name="message">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-key">Clé</label>
+                            <input id="clear-key" type="number" class="form-control uk-input" name="message-key">
+                        </div>
+                    </div>
 
-const MainPage = () => {
-  return `<div class="container mb-5 mt-5 main-page">
-            <div class="uk-card uk-card-default uk-width-1-1@m mb-3">
-              <div class="uk-card-header text-center">
-                  <h3 class="uk-card-title">Welcome to Ceasar's Palace</h3>
-              </div>
-              <div class="uk-card-body text-center">
+                    <div class="uk-card-footer">
+                        <div class="row">
+                            <button id="decrypt" class="btn uk-button-primary" >Déchiffrer</button>
+                          
+                        </div>
+                      
+                    </div>
+                    <p id="clear-label" class="hidden"></p>
+                    <p id="clear-content" class="text-success text-center hidden"></p>
 
-              <button id="gotocrypt" class="btn"> Faire un chiffrement </button>
-
-              <br>
-
-              <button id="gotodcrypt" class="btn"> Faire un déchiffrement </button>
-
-              </div>
-            </div>
+                </div>
+          
           </div>`
+}
+
+
+
+
+const HomePage = () => {
+  return '<h1>Welcome to Ceasar\'s Palace !</h1>' + EncryptForm() + '<br>' + DecryptForm()
 }
 
 const removeClassFromElement = (elementId, className) => {
@@ -93,29 +87,12 @@ const removeClassFromElement = (elementId, className) => {
   element.classList.remove(className)
 }
 
-const addClassToElement = (elementId, className) => {
-  const element = document.getElementById(elementId)
-  element.classList.add(className)
-}
 
 const addContentToElement = (elementId, content) => {
   const element = document.getElementById(elementId)
   element.innerHTML = content
 }
 
-const switcher = () => {
-  const _goToCryptButton = document.getElementById('gotocrypt')
-  const _goToDecryptButton = document.getElementById('gotodcrypt')
-
-  _goToCryptButton.addEventListener('click', () => {
-    document.querySelector('#app').innerHTML = EncryptForm()
-  })
-
-  _goToDecryptButton.addEventListener('click', () => {
-    document.querySelector('#app').innerHTML = DecryptForm()
-  })
-
-}
 
 const showCryptedMessage = () => {
 
@@ -123,7 +100,7 @@ const showCryptedMessage = () => {
 
   _encryptButton.addEventListener('click', () => {
     const message = document.getElementById('to-crypt').value
-    const key = document.getElementById('message-key').value
+    const key = document.getElementById('crypted-key').value
 
     const mm = encrypt(message, parseInt(key))
 
@@ -134,16 +111,29 @@ const showCryptedMessage = () => {
     removeClassFromElement('crypted-content', 'hidden')
   
   })
+}
 
+const showClearMessage = () => {
 
+  const _decryptButton = document.getElementById('decrypt')
 
+  _decryptButton.addEventListener('click', () => {
+    const message = document.getElementById('to-decrypt').value
+    const key = document.getElementById('clear-key').value
 
+    const mm = decrypt(message, parseInt(key))
+
+    addContentToElement('clear-label', 'Message clair : ')
+    removeClassFromElement('clear-label', 'hidden')
+
+    addContentToElement('clear-content', mm)
+    removeClassFromElement('clear-content', 'hidden')
+  
+  })
 }
 
 
-
-document.querySelector('#app').innerHTML = EncryptForm()
-
-//switcher()
+document.querySelector('#app').innerHTML = HomePage()
 
 showCryptedMessage()
+showClearMessage()
