@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>js-encrypt-decrypt</title>
+        <script type="text/javascript" src="/vendor/jquery-3.1.0.min.js"></script>
+        <script type="text/javascript" src="/vendor/aes.js"></script>
+        <script type="text/javascript" src="/vendor/pbkdf2.js"></script>
+        <script type="text/javascript" src="/js/crypt.js"></script>
+        <script type="text/javascript" src="/js/action.js"></script>
+        <style media="screen">
+            input, textarea, button {
+                display: block;
+                margin: 1em;
+            }
+            textarea {
+                width: 400px;
+                height: 150px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="encrypt">
+            <div class="encrypt_input">
+                <h1>Encrypt</h1>
+                <textarea name="text" class="message" placeholder="Message to encrypt"></textarea>
+                <input type="text" name="secret" class="secret" value="" placeholder="Passphrase">
+                <button class="action">Encrypt</button>
+            </div>
+
+            <div class="encrypt_result">
+                <h2>Encrypted message:</h2>
+                <textarea class="message" readonly></textarea>
+            </div>
+        </div>
+        <div class="decrypt">
+            <div class="decrypt_input">
+                <h1>Decrypt</h1>
+                <textarea name="text" class="message" placeholder="Message to decrypt"></textarea>
+                <input type="text" name="secret" class="secret" value="" placeholder="Passphrase">
+                <button class="action">Decrypt</button>
+            </div>
+
+            <div class="decrypt_result">
+                <h2>Decrypted message:</h2>
+                <textarea class="message" readonly></textarea>
+            </div>
+        </div>
+    </body>
+</html>
