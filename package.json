@@ -4,13 +4,11 @@
     "name": "Alioune Kanoute",
     "email": "aliounekanoute@gmail.com"
   },
-  "contributors": [{"name": "Bamba Fall", "alias": "Tony Stark", "email": "fbamba99@gmail.com"}],
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "reload": "vite build; vite preview",
     "test": "jest",
     "e2eTest": "nightwatch"
   },
